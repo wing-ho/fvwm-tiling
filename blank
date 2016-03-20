@@ -1,0 +1,12 @@
+DestroyMenu Main-Menu
+AddToMenu Main-Menu
++ "urxvt"          Exec exec urxvt
++ "xdmx"            exec $HOME/xdmx.sh
++ "Exit Fvwm"               Quit
++ "Restart My Fvwm"            Restart fvwm -f $HOME/.fvwm/config
++ "Restart Blank Fvwm"            Restart
++ "Restart Computer"       Exec exec systemctl reboot
++ "Turn Off Computer"       Exec exec systemctl poweroff
+
+Mouse 1   R  A  Menu Main-Menu
+Key Q A CM Quit
