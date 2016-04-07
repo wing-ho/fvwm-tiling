@@ -6,6 +6,7 @@ Robert Ulbricht的[配置文件](https://github.com/urob/fvwm-tiling.git)已经�
 - 修改部分快捷键
 
 以下是简单的使用说明：
+
     States used
     -----------
 
