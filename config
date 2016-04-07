@@ -128,6 +128,7 @@ DestroyFunc StartFunction
 AddToFunc StartFunction
 + I Module FvwmButtons -g $[vp.width]x$[FVWM_TB_HEIGHT]+0+0
 + I Module FvwmCommandS
+#+ I Module FvwmPager 0 1
 #+ I Module FvwmDebug -xc --track PageInfo --track GlobalConfig --debug 4
 + I Schedule 500 Module FvwmEvent
 #xset 关闭屏幕保护-关闭节电模式
@@ -251,8 +252,7 @@ Style "FvwmIdent"   CirculateHit, WindowListHit, Title, State 3 False, State 2
 ### Custom Apps
 Style "urxvt.notitle"  !Title, State 3
 Style "urxvt.bgc"      !Title, State 3, Sticky
-Style "Navigator"      !Title, State 3, StartsOnPage 1 0, SkipMapping
-Style "opera"          !Title, State 3, StartsOnPage 1 0, SkipMapping
+Style "*Firefox*"      !Title, State 3, StartsOnPage 0 0, SkipMapping
 Style "rdesktop"       !Title, State 3, !Borders, !Handles, State 2
 Style "acroread*"      State 2
 Style "gqview*"        State 2
@@ -276,7 +276,6 @@ Style "*bgc"          MiniIcon mutt.mini.xpm
 Style "Gvim"          MiniIcon vim-16.xpm
 Style "MPlayer"       MiniIcon mplayer_.xpm
 Style "pcmanfm*"          MiniIcon folder.png, EWMHMiniIconOverride
-Style "Iceweasel"     MiniIcon firefox_.png, EWMHMiniIconOverride
 Style "opera"         MiniIcon opera_14x14.png
 
 #
@@ -533,7 +532,6 @@ Key T      A    4   Toggle-Title
 Key C	   A    SM   Close
 Key R	   A    SM   RefreshWindow
 
-Key P      A    M    exec exec dmenu_run
 Key L	   A    SM   exec exec slock
 Key R	   A    CM   Restart
 
@@ -583,11 +581,13 @@ Key bracketright     A    CM   MoveAndGotoPage +1 0
 
 ### Applications
 Key Return A 4 exec exec urxvt 
+Key T A 4 exec exec urxvt 
 Key E      A    4   exec exec pcmanfm
-Key B A 4 exec exec google-chrome-stable
+Key B A 4 exec exec firefox
 Key Print A A exec exec deepin-screenshot
 Key K      A    M  exec exec xkill
 Key S A 4 exec exec emacs
+Key R      A    4    exec exec dmenu_run
 Key Q A CM Quit
 
 ### Old, check!
@@ -992,12 +992,10 @@ AddToFunc SwapWindowsToggleState
 ### Does the actually swapping
 DestroyFunc SwapWindows
 AddToFunc SwapWindows
-+ I WindowId $[FvwmId_current] \
-    SetEnv FvwmCoord_current \
-    '$$$$[w.width]p $$$$[w.height]p $$$$[w.x]p $$$$($[w.y]-$[FVWM_TB_HEIGHT])p'
-+ I WindowId $[FvwmId_dest] \
-    SetEnv FvwmCoord_dest \
-    '$$$$[w.width]p $$$$[w.height]p $$$$[w.x]p $$$$$([w.y]-$[FVWM_TB_HEIGHT])p'
+# four dollar make the value evalue at the  nearest context
++ I WindowId $[FvwmId_current] Piperead "echo SetEnv FvwmCoord_current \\'$$$$[w.width]p $$$$[w.height]p $$$$[w.x]p $(($$$$[w.y]-$[FVWM_TB_HEIGHT]))p\\'"
++ I WindowId $[FvwmId_dest] Piperead "echo SetEnv FvwmCoord_dest \\'$$$$[w.width]p $$$$[w.height]p $$$$[w.x]p $(($$$$[w.y]-$[FVWM_TB_HEIGHT]))p\\'"
+#'$$$$[w.width]p $$$$[w.height]p $$$$[w.x]p ($[w.y]-$[FVWM_TB_HEIGHT])p'
 # I don't know why ResizeMove don't have the right behavior,hack it by minus FVWM_TB_HEIGHT by hand
 + I WindowId $[FvwmId_current] ResizeMove frame $[FvwmCoord_dest]
 + I WindowId $[FvwmId_dest] ResizeMove frame $[FvwmCoord_current]
@@ -1057,6 +1055,7 @@ DestroyModuleConfig FvwmButtons: *
 
 SetEnv text.width 85
 PipeRead 'echo SetEnv pager.width $(( $[desk.pagesx]*$[vp.width]*$[FVWM_TB_HEIGHT]/$[vp.height] ))'
+#PipeRead 'echo SetEnv pager.width 0
 PipeRead 'echo SetEnv stalon.width $(( 4*$[FVWM_TB_HEIGHT] ))'
 PipeRead 'echo SetEnv iconman.width $(( $[vp.width] - $[pager.width] - $[stalon.width] - $[FVWM_TB_HEIGHT] - $[text.width] ))'
 *FvwmButtons: ($[pager.width]x1, Swallow (SwallowNew) FvwmPager 'FvwmPager *')
@@ -1070,8 +1069,9 @@ PipeRead 'echo SetEnv iconman.width $(( $[vp.width] - $[pager.width] - $[stalon.
               Action ToggleTiling)
 
 #----- Pager {{{2
-
+#Style FvwmPager Sticky, StaysOnTop
 DestroyModuleConfig FvwmPager: *
+#*FvwmPager: Geometry -1+120
 *FvwmPager: Columns 1
 *FvwmPager: UseSkipList
 *FvwmPager: Font none
