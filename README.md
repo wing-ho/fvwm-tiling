@@ -1,4 +1,5 @@
 A tiling window manager configuration for fvwm fork from https://github.com/urob/fvwm-tiling.git
+![a short view of main tiling functionality](fvwm.gif)
 
 ------------------------------------------------------------------------
 
@@ -70,18 +71,18 @@ organized and easy to read.
     -----------
 
 Tiling-Related:
- Alt+Space:       Switch current page between floating/tiling mode
+ Super+Space:       Switch current page between floating/tiling mode
                   (can also be done using the indicator-button in the
                   right upper corner of the button bar).
- Alt+Shift+Space: Switch current window between floating/tiling 
+ Super+Shift+Space: Switch current window between floating/tiling 
                   (only applies when in tiling mode)
  Ctrl+Alt+Enter:  Make current window master
  Alt+L:           Increase master area
  Alt+H:           Decrease master area
 
 Selecting windows:
- Alt+J:           Select next window clockwise
- Alt+K:           Select next window counterclockwise
+ Super+J:           Select next window clockwise
+ Super+K:           Select next window counterclockwise
  Alt+Ctrl+J:      Move current window clockwise
  Alt+Ctrl+K:      Move current window counterclockwise
  Alt+Tab:         Cycle through complete window list (including minimized and
@@ -97,16 +98,16 @@ Navigating workspaces:
  Alt-Escape:      Go to last page
 
 Window operations:
- Alt+M:           Maximize window and set to floating
- Alt+T:           Titlebar on/off
- Alt+S:           Toggle Sticky
- Alt+X:           Minimize (retrieve using the taskbar or Alt+Tab)
+ Super+M:           Maximize window and set to floating
+ Super+T:           Titlebar on/off
+ Super+S:           Toggle Sticky
+ Super+X:           Minimize (retrieve using the taskbar or Alt+Tab)
  Alt+Shift+C:     Close (alternative shortcut Alt+F4)
  Alt+LeftClick:   Move window and set to floating
  Alt+RightClick:  Resize window and set to floating
 
 Other:
- Alt+P:           Execute command (launches dmenu)
+ Super+P:           Execute command (launches dmenu)
  Alt+Grave:       Toggle Background console
  Middle-Click root window/titlebar: Toggle Edgescrolling
 

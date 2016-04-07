@@ -1,80 +1,3 @@
-#------------------------------------------------------------------------------
-#
-#             File: config
-#           Author: Robert Ulbricht
-#          Created: Mar 10 2009, 22:13:18
-#
-#      Description: Best of both worlds - A tiling-wm configuration for fvwm
-#      Last Change: Aug 14 2011, 15:13:40
-#
-#------------------------------------------------------------------------------
-#
-#                    README                                                 {{{1
-#                   --------
-#      States used: State 0: Toggles EdgeScroll ( true if EdgeThickness 0), applies
-#                            only to FvwmButtons
-#                   State 1: true if window is master
-#                   State 2: true if window is floating
-#                   State 3: toggles Title/!Title (true if !Title)
-#
-#     Requirements: The use of 'urxvt' is hardcoded as the default shell.
-#                   Sorry! Either install or better change code (using a
-#                   variable). Further the background-console relies on
-#                   'screen'. Finally, 'stalonetray' is used as tray and
-#                   'dmenu_run' is used for the program launcher. Install or
-#                   adjust. (A recompiled-version of dmenu to match the
-#                   taskbar-size is included, you may have to compile yourself
-#                   if running on another platform.)
-#
-#      Keybindings: Tiling-Related:
-#                     Alt+Space:       Switch current page between floating/tiling mode
-#                                      (can also be done using the indicator-button in the
-#                                      right upper corner of the button bar).
-#                     Alt+Shift+Space: Switch current window between floating/tiling 
-#                                      (only applies when in tiling mode)
-#                     Ctrl+Alt+Enter:  Make current window master
-#                     Alt+L:           Increase master area
-#                     Alt+H:           Decrease master area
-#
-#                    Selecting windows:
-#                     Alt+J:           Select next window clockwise
-#                     Alt+K:           Select next window counterclockwise
-#                     Alt+Ctrl+J:      Move current window clockwise
-#                     Alt+Ctrl+K:      Move current window counterclockwise
-#                     Alt+Tab:         Cycle through comple window list (including minimized
-#                                      and other pages)
-#
-#                    Navigating workspaces:
-#                     Alt-Right:       Go to right page (alternative binding: Alt+])
-#                     Alt-Left:        Go to left page (alternative binding: Alt+[)
-#                     Alt-Ctrl-Right:  Go to right page and take focused windows with you
-#                     Alt-Ctrl-Left:   Go to left page and take focused windows with you
-#                     Alt-Down:        Go to next (secondary) desk
-#                     Alt-Up:          Go to previous (primary) desk
-#                     Alt-Escape:      Go to last page
-#
-#                    Window operations:
-#                     Alt+M:           Maximize window and set to floating
-#                     Alt+T:           Titlebar on/off
-#                     Alt+S:           Toggle Sticky
-#                     Alt+X:           Minimize (retrieve using the taskbar or Alt+Tab)
-#                     Alt+Shift+C:     Close (alternative shortcut Alt+F4)
-#                     Alt+LeftClick:   Move window and set to floating
-#                     Alt+RightClick:  Resize window and set to floating
-#
-#                    Other:
-#                     Alt+P:           Execute command (launches dmenu)
-#                     Alt+Grave:       Toggle Background console
-#                     Middle-Click root window/titlebar: Toggle Edgescrolling
-#
-#                    Applications:
-#                     Various, customize in the keybinding section
-#
-#   For more information see the README file.
-#
-#------------------------------------------------------------------------------
-
-#
 #          Global {{{1
 #
 
@@ -528,7 +451,7 @@ Key Return A    CM   SetCurrentMaster
 Key M      A    4    Maximize-and-SetFloating 100 100
 Key T      A    4   Toggle-Title
 #Key S      A    4    Stick
-#Key X	   A    M    Iconify true
+Key X	   A    4    Iconify true
 Key C	   A    SM   Close
 Key R	   A    SM   RefreshWindow
 
@@ -581,12 +504,11 @@ Key bracketright     A    CM   MoveAndGotoPage +1 0
 
 ### Applications
 Key Return A 4 exec exec urxvt 
-Key T A 4 exec exec urxvt 
 Key E      A    4   exec exec pcmanfm
 Key B A 4 exec exec firefox
 Key Print A A exec exec deepin-screenshot
 Key K      A    M  exec exec xkill
-Key S A 4 exec exec emacs
+#Ke S A 4 exec exec emacs
 Key R      A    4    exec exec dmenu_run
 Key Q A CM Quit
 
