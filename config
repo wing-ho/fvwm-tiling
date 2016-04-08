@@ -174,7 +174,7 @@ Schedule Periodic 2000 UpdateTextfield
 DestroyFunc UpdateTextfield
 AddToFunc UpdateTextfield
 + I PipeRead 'echo SendToModule FvwmButtons ChangeButton Textfield Title \
-    \\"`date +"%b %-d, %-H:%M"`\\"'
+    \\"`date +"%b%-d %-A %-H:%M"`\\"'
 ### Adjust "text.width" below in section Modules when using one of the two below:
 #    \\"`sh $FVWM_USERDIR/bin/battery-check.sh`, `date +"%-H:%M"`\\"'
 #    \\"`sh $FVWM_USERDIR/bin/battery-check.sh` \\| `date +"%b %-d, %-H:%M"`\\"'
@@ -1070,7 +1070,7 @@ DestroyModuleConfig FvwmButtons: *
 #*FvwmButtons: BoxSize smart
 
 
-SetEnv text.width 85
+SetEnv text.width 94
 PipeRead 'echo SetEnv pager.width $(( $[desk.pagesx]*$[vp.width]*$[FVWM_TB_HEIGHT]/$[vp.height] ))'
 #PipeRead 'echo SetEnv pager.width 0
 PipeRead 'echo SetEnv stalon.width $(( 4*$[FVWM_TB_HEIGHT] ))'
