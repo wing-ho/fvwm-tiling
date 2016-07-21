@@ -1070,7 +1070,7 @@ DestroyModuleConfig FvwmButtons: *
 #*FvwmButtons: BoxSize smart
 
 
-SetEnv text.width 100
+SetEnv text.width 120
 PipeRead 'echo SetEnv pager.width $(( $[desk.pagesx]*$[vp.width]*$[FVWM_TB_HEIGHT]/$[vp.height] ))'
 #PipeRead 'echo SetEnv pager.width 0
 PipeRead 'echo SetEnv stalon.width $(( 4*$[FVWM_TB_HEIGHT] ))'
