@@ -4,3 +4,5 @@ Robert Ulbricht的[配置文件](https://github.com/urob/fvwm-tiling.git)已经�
 我对它的配置文件主要做了如下修改：
 - 修正了窗口位置计算错误
 - 修改部分快捷键
+
+显示任务栏图标需要安装stalonetray，其他依赖参考fvwm配置文件。
